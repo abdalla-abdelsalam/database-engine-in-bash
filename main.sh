@@ -1,0 +1,127 @@
+#!/bin/bash
+
+# Function to check if the database name is valid
+PS3="Please choose an option (enter the number): "
+check_valid_database_name() {
+    local db_name="$1"
+
+    # Check if the database name is empty
+    if [[ -z "$db_name" ]]; then
+        echo "Error: Database name cannot be empty."
+        return 1
+    fi
+
+    # Check if the database name contains only valid characters (letters, digits, and hyphen)
+    if [[ ! "$db_name" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+        echo "Error: Database name can only contain letters, digits, underscore (_) and hyphen (-)."
+        return 1
+    fi
+
+    # Check if the database name starts with a letter (lowercase or uppercase)
+    if [[ ! "$db_name" =~ ^[a-zA-Z] ]]; then
+        echo "Error: Database name should start with a letter (lowercase or uppercase)."
+        return 1
+    fi
+
+    # All checks passed, database name is valid
+    return 0
+}
+
+function createDB {
+
+    read -p "Enter database name: "  db_name
+
+    if ! check_valid_database_name "$db_name" ; then
+        exit 1
+    fi
+
+
+    if [ -d "./databases/$db_name" ]; then
+    echo "Error: Database ${database_name} already exists."
+    exit 1
+    fi
+
+    mkdir "./databases/$db_name"
+
+    if [[ $? -eq 0 ]] ;then
+        echo "database ${db_name} created successfully. "
+    else
+        echo "couldn't create the database ."
+        exit 1
+    fi
+
+ }
+
+
+
+function listDB {
+
+  current_databases=`ls ./databases`
+
+    if [[ -n $current_databases ]] ;then
+        ls  "./databases"
+    else
+        echo "no databases found"
+    fi
+
+ }
+
+ function dropDB {
+    read -p "Enter database name: "  db_name
+
+    if ! check_valid_database_name "$db_name" ; then
+        exit 1
+    fi
+
+    if [ ! -d "./databases/$db_name" ]; then
+        echo "Error: Database ${db_name} doesn't exsists."
+        exit 1
+    fi
+
+    rm -rf "./databases/${db_name}"
+
+    if [[ $? -eq 0 ]] ;then
+        echo "database ${db_name} deleted successfully. "
+    else
+        echo "couldn't delete ${db_name} database ."
+        exit 1
+    fi
+
+ }
+
+
+
+
+select var in "Create DB" "list DB"  "Connect DB"  "Drop DB" "Exit"
+do 
+
+  if [[ $REPLY =~ ^[1-5]$ && -n $REPLY ]] ;then
+
+      case $REPLY in 
+
+      1) 
+          createDB  
+          ;;
+
+
+      2)
+          listDB
+          ;;
+
+      3)
+          #connectDB
+          ;;
+
+      4)
+          dropDB
+          ;;
+      5)
+        exit
+        ;;
+
+      esac
+else
+   echo "please enter valid number"
+  fi
+
+done 
