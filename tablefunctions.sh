@@ -39,8 +39,8 @@ do
 	   #update
 	   ;;
 
-      8)
-           exit
+      8)   
+           startupMenu 
            ;;
 
       esac
