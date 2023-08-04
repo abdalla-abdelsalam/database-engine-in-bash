@@ -71,8 +71,7 @@ function listDB {
 
  }
 
-
-#function to create Database
+# function to connect to database
 function connectDB {
 
     read -p "Enter database name: "  db_name
@@ -93,7 +92,6 @@ function connectDB {
    
 
 }
-
 
 
 #function to drop  existed Databases
