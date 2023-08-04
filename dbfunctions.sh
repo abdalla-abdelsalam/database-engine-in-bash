@@ -2,7 +2,6 @@
 
 source  tablefunctions.sh
 
-
 # Function to check if the database name is valid
 PS3="Please choose an option (enter the number): "
 check_valid_database_name() {
@@ -89,7 +88,6 @@ function connectDB {
      done
 
       if [[ $flag == "true" ]]; then 
-       cd ./databases/$db_name
        tableMenu
       else
         echo "please enter correct database"
