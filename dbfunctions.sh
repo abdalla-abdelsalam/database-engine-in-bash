@@ -1,3 +1,6 @@
+#!/bin/bash
+
+source  tablefunctions.sh
 
 
 # Function to check if the database name is valid
@@ -75,18 +78,19 @@ function listDB {
 #function to create Database
 function connectDB {
 
+    flag="false"
     read -p "Enter database name: "  db_name
     for i in `ls ./databases` 
     do 
-     if [[ $i -eq $db_name ]]; then 
+     if [[ $i == $db_name ]]; then 
           flag="true"
       fi
 
      done
 
-      if [[ $flag ]]; then 
+      if [[ $flag == "true" ]]; then 
        cd ./databases/$db_name
-       #tableMenu
+       tableMenu
       else
         echo "please enter correct database"
        fi
