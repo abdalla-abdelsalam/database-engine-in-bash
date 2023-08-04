@@ -75,7 +75,7 @@ function listDB {
  }
 
 
-#function to create Database
+#function to connect to the  Database
 function connectDB {
 
     flag="false"
