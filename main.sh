@@ -3,6 +3,7 @@
 
 source  dbfunctions.sh
 
+function startupMenu {
 
 select var in "Create DB" "list DB"  "Connect DB"  "Drop DB" "Exit"
 do 
@@ -37,3 +38,7 @@ else
   fi
 
 done 
+
+}
+
+startupMenu
