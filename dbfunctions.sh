@@ -72,6 +72,30 @@ function listDB {
  }
 
 
+#function to create Database
+function connectDB {
+
+    read -p "Enter database name: "  db_name
+    for i in `ls ./databases` 
+    do 
+     if [[ $i -eq $db_name ]]; then 
+          flag="true"
+      fi
+
+     done
+
+      if [[ $flag ]]; then 
+       cd ./databases/$db_name
+       #tableMenu
+      else
+        echo "please enter correct database"
+       fi
+   
+
+}
+
+
+
 #function to drop  existed Databases
  function dropDB {
     read -p "Enter database name: "  db_name

@@ -20,7 +20,7 @@ do
           ;;
 
       3)
-          #connectDB
+          connectDB
           ;;
 
       4)
