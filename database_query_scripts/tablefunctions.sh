@@ -2,6 +2,8 @@
 
 source table_query_scripts/create.sh
 source table_query_scripts/insert.sh
+source dtable_query_scripts/elete.sh
+
 
 function tableMenu { 
 select var2 in "Create Table" "list Table" "Drop Table" "Insert into Table" " Select From Table" "Delete From Table" "Update Table" "Exit"
@@ -40,7 +42,7 @@ do
            ;;		  
 
       6)
-          #delete
+         #delete
            ;;
  
       7)  
