@@ -4,7 +4,7 @@ source table_query_scripts/create.sh
 source table_query_scripts/insert.sh
 source table_query_scripts/delete.sh
 source table_query_scripts/listTable.sh
-
+source table_query_scripts/dropTable.sh
 
 function tableMenu { 
 select var2 in "Create Table" "list Table" "Drop Table" "Insert into Table" " Select From Table" "Delete From Table" "Update Table" "Exit"
