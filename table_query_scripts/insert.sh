@@ -30,10 +30,7 @@ validate_data_type() {
 
 insert_into_table() {
   local database_name=$1
-  shift
-  local table_name=$1
-  shift
-
+  read -p "enter table name: " table_name
   # Check if the table schema exists
   local schema_file="databases/${database_name}/table_definitions/${table_name}_schema.txt"
   if [[ ! -f "$schema_file" ]]; then
@@ -66,28 +63,26 @@ insert_into_table() {
   # Restore the original IFS value
   IFS=$OLD_IFS
 
-  # Ensure the number of columns in the schema matches the number of values provided
   local num_columns=${#columns[@]}
-  local num_values=$#
-  if ((num_values != num_columns)); then
-    echo "Error: Number of columns in the schema ($num_columns) doesn't match the number of values provided ($num_values)."
-    return 1
-  fi
 
-  # Validate and prepare the data line to insert
-  local data_line=""
+  echo "Inserting data into '$table_name':"
   for ((i = 0; i < num_columns; i++)); do
     local column_name=${columns[i]}
     local data_type=${data_types[i]}
-    local value=$1
-    shift
+    local value=""
 
-    if ! validate_data_type "$column_name" "$data_type" "$value"; then
-      return 1
-    fi
+    while true; do
+      read -p "Enter value for '$column_name' (type '$data_type'): " value
+      # Validate the data type before proceeding
+      if validate_data_type "$column_name" "$data_type" "$value"; then
+        break
+      else
+        echo " entered value doesn't match data type value try again"
+      fi
+    done
 
-    # Use colon (:) as the separator between columns
-    data_line+="${value}:"
+    # Use colon (:) as the separator between values
+    data_line+="$value:"
   done
 
   # Remove the trailing colon
