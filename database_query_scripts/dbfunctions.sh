@@ -90,7 +90,7 @@ function connectDB {
      done
 
       if [[ $flag == "true" ]]; then 
-       tableMenu
+       tableMenu ${db_name}
       else
         echo "please enter correct database"
        fi

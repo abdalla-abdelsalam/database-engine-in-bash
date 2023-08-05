@@ -7,6 +7,7 @@ source table_query_scripts/listTable.sh
 source table_query_scripts/dropTable.sh
 
 function tableMenu { 
+    local database_name=$1
 select var2 in "Create Table" "list Table" "Drop Table" "Insert into Table" " Select From Table" "Delete From Table" "Update Table" "Exit"
 do
 
@@ -16,12 +17,7 @@ do
 
       1)
           #createTable
-          echo "create table"
-          create_schema "users"  "users" \
-          "user_id" "integer" \
-          "username" "text" \
-          "email" "text" \
-          "age" "integer"
+          create_schema ${database_name} 
           ;;
 
 
@@ -35,7 +31,7 @@ do
 
       4)
           #insert
-          insert_into_table "users" "users" 1 "John Doe" "john.doe@example.com" 30
+          insert_into_table ${database_name}
           ;;
       
       5)
