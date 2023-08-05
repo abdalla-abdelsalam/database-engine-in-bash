@@ -2,7 +2,8 @@
 
 source table_query_scripts/create.sh
 source table_query_scripts/insert.sh
-source dtable_query_scripts/elete.sh
+source table_query_scripts/delete.sh
+source table_query_scripts/listTable.sh
 
 
 function tableMenu { 
