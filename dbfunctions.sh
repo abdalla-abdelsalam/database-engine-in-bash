@@ -78,17 +78,9 @@ function listDB {
 #function to connect to the  Database
 function connectDB {
 
-    flag="false"
     read -p "Enter database name: "  db_name
-    for i in `ls ./databases` 
-    do 
-     if [[ $i == $db_name ]]; then 
-          flag="true"
-      fi
 
-     done
-
-      if [[ $flag == "true" ]]; then 
+      if [[ -d ./databases/$db_name ]]; then 
        cd ./databases/$db_name
        tableMenu
       else

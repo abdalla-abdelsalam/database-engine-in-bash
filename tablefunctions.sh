@@ -39,7 +39,10 @@ do
 	   #update
 	   ;;
 
-      8)   
+      8) 
+           echo $PWD
+           cd ../..  
+           echo $PWD
            startupMenu 
            ;;
 
