@@ -20,9 +20,9 @@ function deleteTable (){
             rm -r ./${table_name}_data.txt
 
             if [[ $? -eq 0 ]];then
-             echo "the table has been deleted successfully"
+             echo "all table data has been deleted successfully"
             else
-              echo "there is an error to delete the table"
+              echo "there is an error to delete the table data"
             fi
              ;;
 
