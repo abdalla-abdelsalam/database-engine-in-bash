@@ -41,14 +41,15 @@ function createDB {
     fi
 
     #condition to check database directory if it is existed or not
-    if [ -d "./databases/$db_name" ]; then
+    if [ -d "databases/$db_name" ]; then
     echo "Error: Database ${database_name} already exists."
     exit 1
     fi
 
     #creating database 
-    mkdir "./databases/$db_name"
-    mkdir "./
+    mkdir "databases/$db_name"
+    mkdir "databases/$db_name/table_definitions"
+    mkdir "databases/$db_name/data_files"
 
     #condition to check if the database directory created or not
     if [[ $? -eq 0 ]] ;then
@@ -107,12 +108,12 @@ function connectDB {
         exit 1
     fi
 
-    if [ ! -d "./databases/$db_name" ]; then
+    if [ ! -d "databases/$db_name" ]; then
         echo "Error: Database ${db_name} doesn't exsists."
         exit 1
     fi
 
-    rm -rf "./databases/${db_name}"
+    rm -rf "databases/${db_name}"
 
     if [[ $? -eq 0 ]] ;then
         echo "database ${db_name} deleted successfully. "

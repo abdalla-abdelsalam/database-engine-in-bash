@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-source  dbfunctions.sh
+source  database_query_scripts/dbfunctions.sh
 
 function startupMenu {
 

@@ -98,7 +98,3 @@ insert_into_table() {
 
   echo "Data inserted into '$table_name' successfully."
 }
-
-
-# Call the function to insert data into the "users" table
-insert_into_table "users" "users" 1 "John Doe" "john.doe@example.com" 30

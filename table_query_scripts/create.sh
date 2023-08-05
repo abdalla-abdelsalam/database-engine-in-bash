@@ -26,17 +26,3 @@ create_schema() {
 
   echo "Schema for '$table_name' created successfully in '$schema_file'."
 }
-
-# Call the function to create schema for "users" table with columns and data types
-create_schema "users"  "users" \
-  "user_id" "integer" \
-  "username" "text" \
-  "email" "text" \
-  "age" "integer"
-
-# Call the function to create schema for "products" table with columns and data types
-# create_schema "products" \
-#   "product_id" "integer" \
-#   "name" "text" \
-#   "price" "float" \
-#   "description" "text"
