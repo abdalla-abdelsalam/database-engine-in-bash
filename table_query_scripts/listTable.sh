@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+function listTable {
 count='ls -l . | wc -l'
  
  if [[ -n $count ]];then
@@ -7,5 +9,5 @@ count='ls -l . | wc -l'
  else
   echo "No tables are found"
  fi
-
+}
 
