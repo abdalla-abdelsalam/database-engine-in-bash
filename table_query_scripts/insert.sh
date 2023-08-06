@@ -96,11 +96,12 @@ insert_into_table() {
     local value=""
 
     while true; do
-      value=""
+
       read -p "Enter value for '$column_name' (type '$data_type'): " value
       # Validate the data type before proceeding
       if ! validate_data_type "$column_name" "$data_type" "$value"; then
         echo "entered value doesn't match data type value try again"
+        continue
       fi
       column_position=$((i+1))
       # check for primary key
@@ -122,5 +123,6 @@ insert_into_table() {
 
   # Append the data to the data file
   echo "$data_line" >> "$data_file"
+  data_line=""
   echo "Data inserted into '$table_name' successfully."
 }
