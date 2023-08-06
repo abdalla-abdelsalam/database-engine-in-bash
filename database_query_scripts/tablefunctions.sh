@@ -24,11 +24,11 @@ do
 
       2)
           #listTable
-          ;;
+           ;;
 
       3)
           #dropTable
-          ;;
+           ;;
 
       4)
           #insert
@@ -40,8 +40,9 @@ do
            ;;		  
 
       6)
-         #delete
-           ;;
+         deleteTable ${database_name}
+          echo "current path "$PWD
+            ;;
  
       7)  
 	   #update
