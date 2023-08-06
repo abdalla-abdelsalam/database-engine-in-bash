@@ -22,7 +22,17 @@ create_schema() {
 
     read -p "Enter data type (e.g., integer, text, float): " data_type
 
-    echo "$column_name:$data_type" >> "$schema_file"
+    read -p "Is '$column_name' the primary key? (y/n): " is_primary_key
+    if [[ "$is_primary_key" == "y" ]]; then
+      if [[ -n "$primary_key_column" ]]; then
+        echo "Only one primary key is allowed. you added column: ${primary_key_column} as primary key"
+        is_primary_key='n'
+      else
+        primary_key_column="$column_name"
+      fi
+    fi
+
+    echo "$column_name:$data_type:$is_primary_key" >> "$schema_file"
   done
 
 
