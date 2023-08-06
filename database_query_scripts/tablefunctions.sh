@@ -5,6 +5,7 @@ source table_query_scripts/insert.sh
 source table_query_scripts/delete.sh
 source table_query_scripts/listTable.sh
 source table_query_scripts/dropTable.sh
+source table_query_scripts/select.sh
 
 function tableMenu { 
     local database_name=$1
@@ -35,7 +36,7 @@ do
           ;;
       
       5)
-          #select
+          select_data_from_table ${database_name}
            ;;		  
 
       6)
