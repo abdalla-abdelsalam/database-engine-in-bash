@@ -1,2 +1,0 @@
-id:integer
-name:text
