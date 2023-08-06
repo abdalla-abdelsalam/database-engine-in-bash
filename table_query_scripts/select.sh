@@ -19,7 +19,7 @@ select_data_from_table() {
   # Read the schema to get the column names and their positions
   local -A column_positions
   local -A column_types
-  local schema_file="databases/hello/table_definitions/${table_name}_schema.txt"
+  local schema_file="databases/${database_name}/table_definitions/${table_name}_schema.txt"
 
   let counter=1
   while IFS=: read -r col_name data_type; do
