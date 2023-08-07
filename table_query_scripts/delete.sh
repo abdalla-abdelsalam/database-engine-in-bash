@@ -32,7 +32,7 @@ function deleteTable (){
           2)
             select_data_from_table ${database_name} > temp.file 
            
-             deleted_path=./databases/${database_name}/data_files/${table_name}_data.txt
+            deleted_path=./databases/${database_name}/data_files/${table_name}_data.txt
 
            if [[ -n temp.file ]];then    
 	
