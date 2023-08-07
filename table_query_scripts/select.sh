@@ -28,7 +28,7 @@ select_data_from_table() {
     ((counter++))
   done < "$schema_file"
   # check if column name is empty
-  if [[ -z "$colum_name" ]]; then
+  if [[ -z "$column_name" ]]; then
       echo "column name can't be empty"
       return 1
   fi
