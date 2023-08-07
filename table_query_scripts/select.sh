@@ -27,7 +27,11 @@ select_data_from_table() {
     column_types["$col_name"]=$data_type
     ((counter++))
   done < "$schema_file"
-
+  # check if column name is empty
+  if [[ -z "$colum_name" ]]; then
+      echo "column name can't be empty"
+      return 1
+  fi
   # Check if the specified column exists in the schema
   if [[ -z ${column_positions["$column_name"]} ]]; then
     echo "Column '$column_name' does not exist in the schema."
