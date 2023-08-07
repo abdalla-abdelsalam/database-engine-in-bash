@@ -13,8 +13,8 @@ function updateTable {
 
    cat temp2.file
   
-   read -p "enter value column old value  : "  old_value
-   read -p  "enter value column new value : "  new_value
+   read -p "enter column old value  : "  old_value
+   read -p  "enter column new value : "  new_value
         
    test_old_value=`grep $old_value temp2.file`
    if [[ $? -eq 0 ]];then
