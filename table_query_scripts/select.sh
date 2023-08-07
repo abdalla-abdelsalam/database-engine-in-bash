@@ -1,4 +1,14 @@
 #!/bin/bash
+custom_record_print()
+{
+    local data_array=("$@") 
+
+    echo "Row:"
+      for data_value in "${data_array[@]}"; do
+        echo "  $data_value"
+      done
+      echo
+}
 
 declare table_name
 
@@ -47,7 +57,7 @@ select_data_from_table() {
   
   
   # Read the data file, apply the condition, and display the filtered data
-  while IFS=: read -r data_line; do
+  while read -r data_line; do
     # Extract the value of the specified column from the data line
     column_value=$(echo "$data_line" | cut -d':' -f "${column_positions["$column_name"]}")
 
@@ -57,11 +67,7 @@ select_data_from_table() {
       IFS=':' read -ra data_array <<< "$data_line"
 
       # Display the data for each row (column values)
-      echo "Row:"
-      for data_value in "${data_array[@]}"; do
-        echo "  $data_value"
-      done
-      echo
+      custom_record_print ${data_array[@]}
     fi    
 
   done < "$data_file"

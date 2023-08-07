@@ -1,8 +1,5 @@
 #!/bin/bash
 
-
-
-
 function deleteTable (){
 
  local database_name=$1
@@ -16,10 +13,9 @@ function deleteTable (){
          1)
            read -p "Enter tablename "  table_name
 
-           deleted_path=./databases/${database_name}/data_files/${table_name}_data.txt
+           deleted_path="databases/${database_name}/data_files/${table_name}_data.txt"
 
              if [[ -f ${deleted_path} ]];then
-           
                 rm -r ${deleted_path}
 
               if [[ $? -eq 0 ]];then
@@ -27,7 +23,7 @@ function deleteTable (){
               else
                echo "there is an error to delete the table data"
               fi
-
+              
             else
             echo "the table doesn't exist"
              fi
