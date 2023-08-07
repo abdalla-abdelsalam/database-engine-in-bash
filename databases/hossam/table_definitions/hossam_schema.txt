@@ -1,2 +1,2 @@
-id:integer
-name:text
+id:integer:n
+name:text:n
