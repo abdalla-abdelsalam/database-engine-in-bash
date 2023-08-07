@@ -17,13 +17,12 @@ do
       case $REPLY in
 
       1)
-          #createTable
           create_schema ${database_name} 
           ;;
 
 
       2)
-          #listTable
+          listTable  ${database_name} 
            ;;
 
       3)
