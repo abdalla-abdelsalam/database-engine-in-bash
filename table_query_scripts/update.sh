@@ -7,8 +7,8 @@ function updateTable {
  
   select_data_from_table ${database_name}  >  temp.file
 
-  update_path=./databases/${database_name}/data_files/hossam_data.txt
-  
+  update_path=./databases/${database_name}/data_files/${table_name}_data.txt
+
   sed -z 's/\n//g;s/\Row:/\n/g;s/  /:/g' temp.file | cut -f2-5 -d: > temp2.file
 
    cat temp2.file
