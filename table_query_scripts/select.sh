@@ -1,5 +1,7 @@
 #!/bin/bash
 
+declare table_name
+
 select_data_from_table() {
   local database_name=$1
 
@@ -59,5 +61,5 @@ select_data_from_table() {
     fi    
 
   done < "$data_file"
-  return ${table_name}
+
 }

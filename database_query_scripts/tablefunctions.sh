@@ -6,6 +6,8 @@ source table_query_scripts/delete.sh
 source table_query_scripts/listTable.sh
 source table_query_scripts/drop.sh
 source table_query_scripts/select.sh
+source table_query_scripts/update.sh
+
 
 function tableMenu { 
     local database_name=$1
@@ -30,7 +32,6 @@ do
            ;;
 
       4)
-          #insert
           insert_into_table ${database_name}
           ;;
       
@@ -39,11 +40,11 @@ do
            ;;		  
 
       6)
-         deleteTable ${database_name}
+          deleteTable ${database_name}
             ;;
  
       7)  
-	   #update
+	 updateTable ${database_name}
 	   ;;
 
       8)   
