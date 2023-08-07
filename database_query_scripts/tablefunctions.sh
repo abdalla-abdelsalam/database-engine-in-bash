@@ -4,7 +4,7 @@ source table_query_scripts/create.sh
 source table_query_scripts/insert.sh
 source table_query_scripts/delete.sh
 source table_query_scripts/listTable.sh
-source table_query_scripts/dropTable.sh
+source table_query_scripts/drop.sh
 source table_query_scripts/select.sh
 
 function tableMenu { 
@@ -27,7 +27,7 @@ do
            ;;
 
       3)
-          #dropTable
+          dropTable ${database_name}
            ;;
 
       4)
@@ -41,7 +41,6 @@ do
 
       6)
          deleteTable ${database_name}
-          echo "current path "$PWD
             ;;
  
       7)  
