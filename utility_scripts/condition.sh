@@ -2,42 +2,6 @@
 
 declare -A column_positions
 declare -A column_types
-# custom_record_print()
-# {
-#     local data_array=("$@") 
-
-#     echo "Row:"
-#       for data_value in "${data_array[@]}"; do
-#         echo "  $data_value"
-#       done
-#       echo
-# }
-
-# update_rows() {
-#     local file="$1"       # File name
-#     shift
-#     local column="$1"     # Column number to update
-#     shift
-#     local update_value="$1" # Value to update with
-#     shift
-#     local lines=("$@") 
-
-#     # Set the field separator to ":"
-#     local FS=":"
-
-#     # Loop through each line number in the array
-#     for line_num in "${lines[@]}"; do
-#         # Use AWK to update the specified column of the specified line with the update value
-#         awk -v col="$column" -v val="$update_value" -v line="$line_num" -v FS="$FS" '
-#             BEGIN { OFS = FS }   # Set the output field separator to the same as input field separator
-#             NR == line { $col = val }  # For the specified line, update the specified column
-#             { print }                  # Print the updated line or other lines as is
-#         ' "$file" > temp_file && mv temp_file "$file"
-#     done
-# }
-
-
-
 declare table_name
 
 condition() {
