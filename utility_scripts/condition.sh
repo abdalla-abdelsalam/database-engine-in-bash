@@ -20,7 +20,7 @@ condition() {
   read -p "Enter column name, operator, and comparison value (e.g., 'age > 25'): " condition_input
   read -r column_name operator comparison_value <<< "$condition_input"
 
-  local schema_file="databases/${database_name}/table_definitions/${table_name}_schema.txt"
+  schema_file="databases/${database_name}/table_definitions/${table_name}_schema.txt"
 
   let counter=1
   while IFS=: read -r col_name data_type; do

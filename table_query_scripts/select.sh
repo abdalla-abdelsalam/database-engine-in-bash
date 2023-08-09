@@ -1,75 +1,60 @@
 #!/bin/bash
-custom_record_print()
-{
-    local data_array=("$@") 
-
-    echo "Row:"
-      for data_value in "${data_array[@]}"; do
-        echo "  $data_value"
-      done
-      echo
+print_rows_records_print() {
+    local filename="$1"
+    local columns_file="$2"
+    local column_indices="$3"  # New parameter for specific column indices
+    local row_indices="$4"     # New parameter for specific row indices
+    
+    # Read column names and types from columns file
+    while IFS=: read -r col_name col_type; do
+        col_names+=("$col_name")
+    done < "$columns_file"
+    
+    # Convert column indices and row indices to arrays
+    IFS=',' read -ra col_indices <<< "$column_indices"
+    IFS=',' read -ra row_indices <<< "$row_indices"
+    
+    # Print header row for selected columns
+    for index in "${col_indices[@]}"; do
+        printf "%-20s |" "${col_names[index - 1]}"
+    done
+    echo
+    
+    # Print separator line
+    printf "%s\n" "$(printf '+---------------------+' | xargs -n 1 printf %s)"
+    
+    # Read and process data rows
+    current_row_index=1
+    while IFS=: read -r line; do
+        if [[ " ${row_indices[@]} " =~ " $current_row_index " ]]; then
+            IFS=':' read -ra data <<< "$line"
+            
+            for index in "${col_indices[@]}"; do
+                formatted_value="${data[index - 1]}"
+                printf "%-20s |" "$formatted_value"
+            done
+            echo
+        fi
+        
+        ((current_row_index++))
+    done < "$filename"
 }
-
-declare table_name
 
 select_data_from_table() {
   local database_name=$1
+  condition ${database_name}
+  read -p "enter selected columns you wanna to print seperated by comma (e.g. 1,2): " selected_columns
+  #selected_rows="1,2,3"
 
-  read -p "Enter table name: " table_name
+  concatenated=""
+  for num in "${numbers[@]}"; do
+      if [[ -n "$concatenated" ]]; then
+          concatenated="${concatenated},${num}"
+      else
+          concatenated="$num"
+      fi
+  done
 
-  # Check if the data file exists
-  local data_file="databases/${database_name}/data_files/${table_name}_data.txt"
-  if [[ ! -f "$data_file" ]]; then
-    echo "Data file for table '$table_name' does not exist."
-    return 1
-  fi
-
-  # Read the condition from the user
-  read -p "Enter column name, operator, and comparison value (e.g., 'age > 25'): " condition_input
-  read -r column_name operator comparison_value <<< "$condition_input"
-
-  # Read the schema to get the column names and their positions
-  local -A column_positions
-  local -A column_types
-  local schema_file="databases/${database_name}/table_definitions/${table_name}_schema.txt"
-
-  let counter=1
-  while IFS=: read -r col_name data_type; do
-    column_positions["$col_name"]=${counter}
-    column_types["$col_name"]=$data_type
-    ((counter++))
-  done < "$schema_file"
-  # check if column name is empty
-  if [[ -z "$column_name" ]]; then
-      echo "column name can't be empty"
-      return 1
-  fi
-  # Check if the specified column exists in the schema
-  if [[ -z ${column_positions["$column_name"]} ]]; then
-    echo "Column '$column_name' does not exist in the schema."
-    return 1
-  fi
-
-  # Check the data types for the column
-  if [ "${column_types["$column_name"]}" != "text" ]; then
-    operator=$(echo "$operator" | sed 's/>=/-ge/g;s/<=/-le/g;s/>/-gt/g; s/==/-eq/g; s/!=/-ne/g; s/</-lt/g')
-  fi
-  
-  
-  # Read the data file, apply the condition, and display the filtered data
-  while read -r data_line; do
-    # Extract the value of the specified column from the data line
-    column_value=$(echo "$data_line" | cut -d':' -f "${column_positions["$column_name"]}")
-
-    # Check if the column value matches the condition using test command (or [ ])
-    if [ $column_value  $operator $comparison_value 2>/dev/null  ]; then
-      # Split the data line using colons as separators
-      IFS=':' read -ra data_array <<< "$data_line"
-
-      # Display the data for each row (column values)
-      custom_record_print ${data_array[@]}
-    fi    
-
-  done < "$data_file"
-
+  print_rows_records_print "$data_file" "$schema_file" "$selected_columns" "$concatenated"
 }
+
