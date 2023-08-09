@@ -2,6 +2,7 @@
 
 declare -A column_positions
 declare -A column_types
+declare -A column_names
 declare table_name
 
 condition() {

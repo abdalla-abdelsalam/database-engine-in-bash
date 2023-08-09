@@ -43,8 +43,14 @@ print_rows_records_print() {
 select_data_from_table() {
   local database_name=$1
   condition ${database_name}
-  read -p "enter selected columns you wanna to print seperated by comma (e.g. 1,2): " selected_columns
-  #selected_rows="1,2,3"
+  read -rp "enter selected columns you wanna to print seperated by comma (e.g. id,name): " selected_columns
+  IFS=',' read -ra selected_columns_array <<< "${selected_columns}"
+  selected_columns_str=""
+  for element in "${selected_columns_array[@]}"; do
+    selected_columns_str+="${column_positions[$element]},"
+  done
+  # Remove the trailing comma
+  selected_columns_str=${selected_columns_str%,}
 
   concatenated=""
   for num in "${numbers[@]}"; do
@@ -55,6 +61,6 @@ select_data_from_table() {
       fi
   done
 
-  print_rows_records_print "$data_file" "$schema_file" "$selected_columns" "$concatenated"
+  print_rows_records_print "$data_file" "$schema_file" "$selected_columns_str" "$concatenated"
 }
 
