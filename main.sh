@@ -1,6 +1,11 @@
 #!/bin/bash
 
-source  database_query_scripts/dbfunctions.sh
+source  database_query_scripts/createDB.sh
+source  database_query_scripts/listDB.sh
+source  database_query_scripts/connectToDB.sh
+source  database_query_scripts/dropDB.sh
+
+
 
 function startupMenu {
 
