@@ -8,7 +8,7 @@ source  utility_scripts/validation.sh
  function dropDB {
     read -p "Enter database name: "  db_name
 
-    if ! check_valid_database_name "$db_name" ; then
+    if ! check_valid_name "$db_name" ; then
         exit 1
     fi
 

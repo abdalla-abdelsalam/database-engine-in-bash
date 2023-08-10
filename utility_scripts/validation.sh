@@ -3,7 +3,7 @@
 
 # Function to check if the database name is valid
 PS3="Please choose an option (enter the number): "
-check_valid_database_name() {
+check_valid_name() {
     local db_name="$1"
 
     # Check if the database name is empty
