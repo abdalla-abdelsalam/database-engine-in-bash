@@ -10,10 +10,10 @@ function Menu {
 
   echo -e "\n+-----Main Menu-----------------+"
   echo "| 1. Create DB                  |"
-  echo "| 1. list DB                    |"
+  echo "| 2. list DB                    |"
   echo "| 3. connect DB                 |"
   echo "| 4. Drop DB                    |"
-  echo "| 6. Exit                       |"
+  echo "| 5. Exit                       |"
   echo "+-------------------------------+"
 
 }
