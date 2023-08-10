@@ -2,3 +2,4 @@ data.txt
 test.sh
 *.swp
 databases/*
+unit_tests
