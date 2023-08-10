@@ -50,6 +50,7 @@ https://github.com/abdalla-abdelsalam/database-engine-in-bash
 5. select from table
 6. delete from table
 7. update table
+
 ![table features](https://github.com/abdalla-abdelsalam/database-engine-in-bash/assets/51873396/7bf4829c-0f05-4f11-bd89-33fe4b0ce96a)
 
 ## example usage 🛠
@@ -75,7 +76,6 @@ after that we will delete a record with specific id and also updating another re
 ![delete record](https://github.com/abdalla-abdelsalam/database-engine-in-bash/assets/51873396/73b910db-d1e6-42bf-81a9-b4cbb469d60b)
 
 6. update table record with specific id
-
 ![update record](https://github.com/abdalla-abdelsalam/database-engine-in-bash/assets/51873396/316cae2f-6154-4ff2-8277-57b5f39270a4)
 
 7. select the data after to see the effects
