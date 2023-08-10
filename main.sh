@@ -6,7 +6,7 @@ source  database_query_scripts/connectToDB.sh
 source  database_query_scripts/dropDB.sh
 
 
-function Menu {
+function mainMenu {
 
   echo -e "\n+-----Main Menu-----------------+"
   echo "| 1. Create DB                  |"
@@ -32,13 +32,13 @@ do
 
       1) 
           createDB  
-          Menu
+          mainMenu
           ;;
 
 
       2)
           listDB
-          Menu
+          mainMenu
           ;;
 
       3)
@@ -47,7 +47,7 @@ do
 
       4)
           dropDB
-          Menu
+          mainMenu
           ;;
       5)
         exit

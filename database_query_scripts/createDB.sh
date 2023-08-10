@@ -16,7 +16,7 @@ function createDB {
     #condition to check database directory if it is existed or not
     if [ -d "databases/$db_name" ]; then
     echo "Error: Database ${database_name} already exists."
-    exit 1
+    return 1
     fi
 
     #creating database
