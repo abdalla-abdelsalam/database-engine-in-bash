@@ -43,7 +43,6 @@ do
 
       3)
           connectDB
-          Menu
           ;;
 
       4)
