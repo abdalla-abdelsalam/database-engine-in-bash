@@ -13,10 +13,11 @@ check_valid_name() {
     fi
 
     # Check if the database name contains only valid characters (letters, digits, and hyphen)
-     if [[ ! "$db_name" =~ ^[a-zA-Z0-9_-]+$ ]]; then
-        echo "Error: input name can only contain letters, digits, underscore (_) and hyphen (-)."
+    if [[ ! "$db_name" =~ ^[a-zA-Z0-9,_-]+$ ]]; then
+        echo "Error: input name can only contain letters, digits, underscore (_) , hyphen (-) and comma (,) ."
         return 1
     fi
+
 
     # Check if the database name starts with a letter (lowercase or uppercase)
     if [[ ! "$db_name" =~ ^[a-zA-Z] ]]; then

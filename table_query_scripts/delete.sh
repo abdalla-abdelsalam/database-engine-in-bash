@@ -17,7 +17,6 @@ delete_lines() {
 }
 
 function deleteTable (){
-
  local database_name=$1
  local table_name
  
@@ -41,11 +40,14 @@ function deleteTable (){
                 echo "all table data has been deleted successfully"
               else
                echo "there is an error to delete the table data"
+               return 1
               fi
               
             else
               echo "the table doesn't exist"
+              return 1
              fi
+            break
              ;;
 
           2)
@@ -55,6 +57,7 @@ function deleteTable (){
               return 1
             fi
             delete_lines "$data_file" ${numbers[@]}
+            break
               ;;
      
          3)
