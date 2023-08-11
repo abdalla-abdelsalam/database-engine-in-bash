@@ -27,12 +27,12 @@ function tabMenu {
 
 function tableMenu { 
     local database_name=$1
-select var2 in "Create Table" "list Table" "Drop Table" "Insert into Table" " Select From Table" "Delete From Table" "Update Table" "Exit"
+select var2 in 'Create Table' 'list Table' 'Drop Table' 'Insert into Table' ' Select From Table' 'Delete From Table' 'Update Table' 'Exit'
 do
 
   if [[ $REPLY =~ ^[1-8]$ && -n $REPLY ]] ;then
 
-      case $REPLY in
+      case "$REPLY" in
 
       1)
           create_schema ${database_name} 
@@ -40,7 +40,7 @@ do
           ;;
 
 
-      2)
+      '2')
           listTable  ${database_name} 
           tabMenu 
           ;;

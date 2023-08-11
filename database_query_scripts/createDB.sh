@@ -5,7 +5,7 @@ source utility_scripts/validation.sh
 #function to create Database
 function createDB  {
     if [[ -z $1 ]];then
-        read -p "Enter database name: "  db_name
+        read -rp "Enter database name: "  db_name
     else
         db_name=$1
     fi

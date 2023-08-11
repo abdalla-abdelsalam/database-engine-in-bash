@@ -7,7 +7,10 @@ local database_name=$1
 
 local table_name
 
-read  -p "please enter table name : " table_name
+read  -rp "please enter table name : " table_name
+if ! check_valid_name "$table_name" ; then
+    return 1
+fi
 
  data_path=./databases/${database_name}/data_files/${table_name}_data.txt
  schema_path=./databases/${database_name}/table_definitions/${table_name}_schema.txt

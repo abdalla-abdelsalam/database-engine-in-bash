@@ -28,7 +28,29 @@ function updateTable {
 
   local database_name=$1
   condition ${database_name}
-  read -p " set what ? (e.g. 'age = 33') " update_col op new_value
+  if [[ $? -ne 0 ]];then
+    return 1
+  fi
+  read -rp " set what ? (e.g. 'age = 33') " update_col op new_value
+
+  if ! check_valid_name "$update_col" ; then
+    return 1
+  fi
+
+  if [[ -z ${column_positions["$update_col"]} ]]; then
+    echo "Column '$update_col' does not exist in the schema."
+    return 1
+  fi
+  
+  if ! check_valid_name "$op" ; then
+    return 1
+  fi
+
+  if [[ "$op" != '=' ]];then
+    echo "the operator must be = "
+    return 1
+  fi
+  
   update_rows ${data_file} ${column_positions["$update_col"]} "$new_value" ${numbers[@]}
 
 }

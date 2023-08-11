@@ -51,7 +51,10 @@ validate_data_type() {
 
 insert_into_table() {
   local database_name=$1
-  read -p "enter table name: " table_name
+  read -rp "enter table name: " table_name
+  if ! check_valid_name "$table_name" ; then
+      return 1
+  fi
   # Check if the table schema exists
   local schema_file="databases/${database_name}/table_definitions/${table_name}_schema.txt"
   if [[ ! -f "$schema_file" ]]; then
@@ -97,7 +100,10 @@ insert_into_table() {
 
     while true; do
 
-      read -p "Enter value for '$column_name' (type '$data_type'): " value
+      read -rp "Enter value for '$column_name' (type '$data_type'): " value
+      if ! check_valid_name "$value" ; then
+        return 1
+      fi
       # Validate the data type before proceeding
       if ! validate_data_type "$column_name" "$data_type" "$value"; then
         echo "entered value doesn't match data type value try again"

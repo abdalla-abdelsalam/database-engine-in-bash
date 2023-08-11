@@ -6,15 +6,15 @@ source  utility_scripts/validation.sh
 
 #function to drop  existed Databases
  function dropDB {
-    read -p "Enter database name: "  db_name
+    read -rp "Enter database name: "  db_name
 
     if ! check_valid_name "$db_name" ; then
-        exit 1
+        return 1
     fi
 
     if [ ! -d "databases/$db_name" ]; then
         echo "Error: Database ${db_name} doesn't exsists."
-        exit 1
+        return 1
     fi
 
     rm -rf "databases/${db_name}"
@@ -23,7 +23,7 @@ source  utility_scripts/validation.sh
         echo "database ${db_name} deleted successfully. "
     else
         echo "couldn't delete ${db_name} database ."
-        exit 1
+        return 1
     fi
 
  }

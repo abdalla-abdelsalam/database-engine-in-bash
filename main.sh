@@ -43,6 +43,7 @@ do
 
       3)
           connectDB
+          mainMenu
           ;;
 
       4)

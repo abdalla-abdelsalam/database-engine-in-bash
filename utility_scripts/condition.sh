@@ -8,7 +8,11 @@ declare table_name
 condition() {
   local database_name=$1
 
-  read -p "Enter table name: " table_name
+  read -rp "Enter table name: " table_name
+
+  if ! check_valid_name "$table_name" ; then
+        return 1
+  fi
 
   # Check if the data file exists
   data_file="databases/${database_name}/data_files/${table_name}_data.txt"
@@ -18,9 +22,20 @@ condition() {
   fi
 
   # Read the condition from the user
-  read -p "Enter column name, operator, and comparison value (e.g., 'age > 25'): " condition_input
-  read -r column_name operator comparison_value <<< "$condition_input"
+  read -rp "Enter column name, operator, and comparison value (e.g., 'age > 25'): " condition_input
 
+  read -r column_name operator comparison_value <<< "$condition_input"
+  if [[ -n $operator ]];then
+    if [[ "$operator" == ">" || "$operator" == "<" || "$operator" == "<=" || "$operator" == ">=" || "$operator" == "=" ]]; then
+      if [[ -z "$comparison_value" ]];then
+        echo "Error: comparision value can't be empty"
+        return 1
+      fi
+    else
+      echo "Invalid operator: $operator"
+      return 1
+    fi
+  fi
   schema_file="databases/${database_name}/table_definitions/${table_name}_schema.txt"
 
   let counter=1

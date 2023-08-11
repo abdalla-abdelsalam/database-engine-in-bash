@@ -43,7 +43,13 @@ print_rows_records_print() {
 select_data_from_table() {
   local database_name=$1
   condition ${database_name}
+  if [ $? -ne 0 ];then
+    return 1
+  fi
   read -rp "enter selected columns you wanna to print seperated by comma (e.g. id,name): " selected_columns
+#   if ! check_valid_name "$column_name" ; then
+#     return 1
+#   fi
   IFS=',' read -ra selected_columns_array <<< "${selected_columns}"
   selected_columns_str=""
   for element in "${selected_columns_array[@]}"; do
