@@ -101,9 +101,6 @@ insert_into_table() {
     while true; do
 
       read -rp "Enter value for '$column_name' (type '$data_type'): " value
-      if ! check_valid_name "$value" ; then
-        return 1
-      fi
       # Validate the data type before proceeding
       if ! validate_data_type "$column_name" "$data_type" "$value"; then
         echo "entered value doesn't match data type value try again"

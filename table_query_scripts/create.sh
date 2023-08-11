@@ -20,7 +20,8 @@ create_schema() {
   while true; do
     read -rp "Enter column name (or 'done' to finish): " column_name
     if ! check_valid_name "$column_name" ; then
-        return 1
+        echo "try again "
+        continue
     fi
     if [[ "$column_name" == "done" ]]; then
       break
@@ -28,20 +29,21 @@ create_schema() {
 
     read -rp "Enter data type (e.g., integer, text, float): " data_type
     if ! check_valid_name "$data_type" ; then
-        return 1
+        echo "try again "
+        continue
     fi
-    if [[ $data_type != "integer" || $data_type != "text" || $data_type != "float" ]];then
+    if [[ $data_type != "integer" && $data_type != "text" && $data_type != "float" ]];then
       echo "invalid data type ${data_type} "
-      return 1
+      continue
     fi
     read -rp "Is '$column_name' the primary key? (y/n): " is_primary_key
 
     if ! check_valid_name "$is_primary_key" ; then
-        return 1
+        continue
     fi
-    if [[ $is_primary_key != "y" || $is_primary_key != "n" ]];then
+    if [[ $is_primary_key != "y" && $is_primary_key != "n" ]];then
       echo "Error: value of is primary key can be either y or n "
-      return 1
+      continue
     fi
 
     if [[ "$is_primary_key" == "y" ]]; then
