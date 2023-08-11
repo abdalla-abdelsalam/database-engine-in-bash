@@ -28,48 +28,43 @@ function tabMenu {
 function tableMenu { 
     local database_name=$1
 
-PS3="Tables options : "
-select var2 in 'Create Table' 'list Table' 'Drop Table' 'Insert into Table' ' Select From Table' 'Delete From Table' 'Update Table' 'Exit'
+while true;
 do
+ 
+ tabMenu
+  read -rp "please enter table option  : " Table_option
 
-  if [[ $REPLY =~ ^[1-8]$ && -n $REPLY ]] ;then
+  if [[ ${Table_option} =~ ^[1-8]$ && -n ${Table_option} ]] ;then
 
-      case "$REPLY" in
+      case "${Table_option}" in
 
       1)
           create_schema ${database_name} 
-          tabMenu
           ;;
 
 
       '2')
           listTable  ${database_name} 
-          tabMenu 
           ;;
 
       3)
           dropTable ${database_name}
-          tabMenu 
           ;;
 
       4)
           insert_into_table ${database_name}
-          tabMenu
           ;;
       
       5)
          select_data_from_table ${database_name}
-         tabMenu   
          ;;		  
 
       6)
           deleteTable ${database_name}
-          tabMenu  
           ;;
  
       7)  
 	  updateTable ${database_name}
-          tabMenu
           ;;
 
       8)   

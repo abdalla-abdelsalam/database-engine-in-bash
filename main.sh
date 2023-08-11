@@ -22,17 +22,16 @@ function mainMenu {
 
 function startupMenu {
 
-PS3="Database options : "
 
 while true;
 do 
 
  mainMenu
- read -rp "please enter option number : " option
+ read -rp "please enter datanbase DB_option  : " DB_option
 
-  if [[ $option =~ ^[1-5]$ && -n $option ]] ;then
+  if [[ $DB_option =~ ^[1-5]$ && -n $DB_option ]] ;then
 
-      case $option in 
+      case $DB_option in 
 
       1) 
           createDB  
@@ -62,5 +61,6 @@ do
 done 
 
 }
+
 
 startupMenu
