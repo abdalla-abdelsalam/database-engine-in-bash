@@ -42,9 +42,6 @@ function updateTable {
     return 1
   fi
   
-  if ! check_valid_name "$op" ; then
-    return 1
-  fi
 
   if [[ "$op" != '=' ]];then
     echo "the operator must be = "
