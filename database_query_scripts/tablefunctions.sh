@@ -28,7 +28,7 @@ function tabMenu {
 function tableMenu { 
     local database_name=$1
 
-while true;
+while true
 do
  
  tabMenu

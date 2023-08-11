@@ -16,15 +16,33 @@ delete_lines() {
     echo "Done"
 }
 
+
+
+function deleteMenu {
+
+  echo -e "\n+-----Delete Menu----------------+"
+  echo "| 1. Delete all Records         |"
+  echo "| 2. Delete specific Records    |"
+  echo "| 3. Return to Table menu        |"
+  echo "+-------------------------------+"
+
+}
+
+
+
 function deleteTable (){
 
  local database_name=$1
  local table_name
  
-  select var in "all" "record" "Exit"
+  while true
   do
-     if [[ $REPLY =~ ^[1-3]$ && -n $REPLY ]] ;then
-       case $REPLY in
+   
+    deleteMenu
+    read -rp "please enter delete option  : " Delete_option
+
+     if [[ ${Delete_option} =~ ^[1-3]$ && -n ${Delete_option} ]] ;then
+       case ${Delete_option} in
 
          1)
            read -rp "Enter tablename "  table_name
@@ -58,7 +76,7 @@ function deleteTable (){
               ;;
      
          3)
-             exit
+             tableMenu
              ;;
 
       esac

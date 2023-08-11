@@ -23,11 +23,11 @@ function mainMenu {
 function startupMenu {
 
 
-while true;
+while true
 do 
 
  mainMenu
- read -rp "please enter datanbase DB_option  : " DB_option
+ read -rp "please enter database option  : " DB_option
 
   if [[ $DB_option =~ ^[1-5]$ && -n $DB_option ]] ;then
 
