@@ -27,6 +27,8 @@ function tabMenu {
 
 function tableMenu { 
     local database_name=$1
+
+PS3="Tables options : "
 select var2 in 'Create Table' 'list Table' 'Drop Table' 'Insert into Table' ' Select From Table' 'Delete From Table' 'Update Table' 'Exit'
 do
 

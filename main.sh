@@ -22,10 +22,12 @@ function mainMenu {
 
 function startupMenu {
 
-
+PS3="Database options : "
 select var in "Create DB" "list DB"  "Connect DB"  "Drop DB" "Exit"
 do    
 
+
+if [[ ! $REPLY =~ "^\$" ]];then
   if [[ $REPLY =~ ^[1-5]$ && -n $REPLY ]] ;then
 
       case $REPLY in 
@@ -55,9 +57,12 @@ do
         ;;
 
       esac
-else
+  else
    echo "please enter valid number"
   fi
+else
+ echo "\ is not valid parameter"
+fi
 
 done 
 
