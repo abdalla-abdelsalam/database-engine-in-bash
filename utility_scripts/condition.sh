@@ -2,7 +2,7 @@
 
 declare -A column_positions
 declare -A column_types
-declare -A column_names
+declare -a column_names
 declare table_name
 
 condition() {
@@ -42,6 +42,7 @@ condition() {
   while IFS=: read -r col_name data_type; do
     column_positions["$col_name"]=${counter}
     column_types["$col_name"]=$data_type
+    column_names+=("$col_name")
     ((counter++))
   done < "$schema_file"
   # check if column name is empty

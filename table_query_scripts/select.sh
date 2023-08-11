@@ -50,6 +50,16 @@ select_data_from_table() {
 #   if ! check_valid_name "$column_name" ; then
 #     return 1
 #   fi
+  
+  if [[ "$selected_columns" == '*' ]]; then
+    selected_columns=""
+    for col_name in "${column_names[@]}"; do
+      selected_columns+=$col_name
+      selected_columns+=","
+    done
+    selected_columns=${selected_columns%,}
+  fi
+
   IFS=',' read -ra selected_columns_array <<< "${selected_columns}"
   selected_columns_str=""
   for element in "${selected_columns_array[@]}"; do
