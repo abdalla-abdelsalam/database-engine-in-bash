@@ -27,33 +27,28 @@ PS3="Database options : "
 while true;
 do 
 
-mainMenu
-read -p "please enter option number : " option
+ mainMenu
+ read -rp "please enter option number : " option
 
-if [[ ! $option =~ "^\$" ]];then
   if [[ $option =~ ^[1-5]$ && -n $option ]] ;then
 
       case $option in 
 
       1) 
           createDB  
-          #mainMenu
           ;;
 
 
       2)
           listDB
-          #mainMenu
           ;;
 
       3)
           connectDB
-          #mainMenu
           ;;
 
       4)
           dropDB
-          #mainMenu
           ;;
       5)
         exit
@@ -63,9 +58,6 @@ if [[ ! $option =~ "^\$" ]];then
   else
    echo "please enter valid number"
   fi
-else
- echo "\ is not valid parameter"
-fi
 
 done 
 
