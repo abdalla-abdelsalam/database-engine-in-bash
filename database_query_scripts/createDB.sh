@@ -11,7 +11,7 @@ function createDB  {
     fi
     
    #condition to check database name validation
-    if ! check_valid_database_name "$db_name" ; then
+    if ! check_valid_name "$db_name" ; then
         return 1
     fi
 

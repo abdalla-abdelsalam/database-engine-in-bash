@@ -8,19 +8,19 @@ check_valid_name() {
 
     # Check if the database name is empty
     if [[ -z "$db_name" ]]; then
-        echo "Error: Database name cannot be empty."
+        echo "Error: input name cannot be empty."
         return 1
     fi
 
     # Check if the database name contains only valid characters (letters, digits, and hyphen)
      if [[ ! "$db_name" =~ ^[a-zA-Z0-9_-]+$ ]]; then
-        echo "Error: Database name can only contain letters, digits, underscore (_) and hyphen (-)."
+        echo "Error: input name can only contain letters, digits, underscore (_) and hyphen (-)."
         return 1
     fi
 
     # Check if the database name starts with a letter (lowercase or uppercase)
     if [[ ! "$db_name" =~ ^[a-zA-Z] ]]; then
-        echo "Error: Database name should start with a letter (lowercase or uppercase)."
+        echo "Error: input name should start with a letter (lowercase or uppercase)."
         return 1
     fi
 
