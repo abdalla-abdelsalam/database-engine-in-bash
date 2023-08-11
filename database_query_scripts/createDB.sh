@@ -9,7 +9,7 @@ function createDB  {
     else
         db_name=$1
     fi
-    echo $db_name
+    
    #condition to check database name validation
     if ! check_valid_database_name "$db_name" ; then
         return 1
