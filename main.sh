@@ -23,34 +23,37 @@ function mainMenu {
 function startupMenu {
 
 PS3="Database options : "
-select var in "Create DB" "list DB"  "Connect DB"  "Drop DB" "Exit"
-do    
 
+while true;
+do 
 
-if [[ ! $REPLY =~ "^\$" ]];then
-  if [[ $REPLY =~ ^[1-5]$ && -n $REPLY ]] ;then
+mainMenu
+read -p "please enter option number : " option
 
-      case $REPLY in 
+if [[ ! $option =~ "^\$" ]];then
+  if [[ $option =~ ^[1-5]$ && -n $option ]] ;then
+
+      case $option in 
 
       1) 
           createDB  
-          mainMenu
+          #mainMenu
           ;;
 
 
       2)
           listDB
-          mainMenu
+          #mainMenu
           ;;
 
       3)
           connectDB
-          mainMenu
+          #mainMenu
           ;;
 
       4)
           dropDB
-          mainMenu
+          #mainMenu
           ;;
       5)
         exit
