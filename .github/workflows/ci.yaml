@@ -23,6 +23,6 @@ jobs:
           chmod +x unit_tests/test_create_db.sh
           chmod +x unit_tests/test_drop_db.sh
           ./unit_tests/test_create_db.sh
-          ./test_drop_db.sh
+          ./unit_tests/test_drop_db.sh
           
 
