@@ -6,7 +6,12 @@ source  utility_scripts/validation.sh
 
 #function to drop  existed Databases
  function dropDB {
-    read -rp "Enter database name: "  db_name
+
+    if [[ -z $1 ]];then
+        read -rp "Enter database name: "  db_name
+    else
+        db_name=$1
+    fi
 
     if ! check_valid_name "$db_name" ; then
         return 1
